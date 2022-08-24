@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_pivotsss_root"
+              name="My Report"
+              web_icon="report_sales,static/description/icon.png"
+              sequence="0"
+    />
+
+    <menuitem
+            id="chhahc_achahaw"
+            name="SAlssaw"
+            parent="report_sales.menu_pivotsss_root"
+            action="report_sales.action_s_sales_report"/>
+</odoo>

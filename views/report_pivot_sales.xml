@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="###view_my_report_pivot" model="ir.ui.view">
+        <field name="name">Report Sales</field>
+        <field name="model">report.sales.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="timesheet" disable_linking="True" sample="1">
+                <field name="partner_id" type="row"/>
+                <field name="product_uom_qty" string="Quantity" type="measure"/>
+                <field name="qty_invoiced" string="Invoiced" type="measure"/>
+                <field name="price_total" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_s_sales_report" model="ir.actions.act_window">
+        <field name="name">Ananlysis Sales</field>
+        <field name="res_model">report.sales.analysis</field>
+        <field name="view_mode">pivot</field>
+    </record>
+</odoo>
