@@ -20,12 +20,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'sale'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/menu.xml',
+        'report/qweb_detail_sale.xml',
+        'report/qweb_my_sale.xml',
         'views/report_pivot_sales.xml',
         'views/views.xml',
         'views/templates.xml',
