@@ -1,150 +1,196 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="qweb_report_my_sale">
-        <style>
-            .date_hl {
-            display: flex;
-            justify-content: space-around;
-            }
-            .my_table th, .my_table td {
-            padding: 0.75rem;
-            vertical-align: top;
-            }
-            .cen_cen {
-            margin-top: 4rem;
-            display: flex;
-            justify-content: center;
-            }
-            table.my_table {
-            width: 80%;
-            }
-            .table2 {
-            display: flex;
-            justify-content: center;
-            }
-            .table2 tr {
-            text-align: center;
-            height: 3rem;
-            }
-        </style>
         <t t-foreach="docs" t-as="o">
             <t t-call="web.html_container">
-                <div class="page">
-                    <div class="company">
-                        <div class="logo">
-                        </div>
-                        <div class="info"></div>
-                    </div>
-                    <div class="name_name">
-                        <h4 style="text-align:center">SALE ORDER</h4>
-                        <div class="date_hl">
-                            <div>Date:
-                                <span t-field="o.create_date" t-options='{"widget": "date"}'/>
+                <div class="page ooo">
+                    <t t-call="web.external_layout">
+                        <style>
+                            .date_hl {
+                            display: flex;
+                            justify-content: space-around;
+                            }
+                            .my_table th, .my_table td {
+                            padding: 0.75rem;
+                            vertical-align: top;
+                            }
+                            .cen_cen {
+                            margin-top: 4rem;
+                            display: flex;
+                            justify-content: center;
+                            }
+                            table.my_table {
+                            width: 80%;
+                            }
+                            .table2 {
+                            display: flex;
+                            justify-content: center;
+                            }
+                            .table2 tr {
+                            text-align: center;
+                            height: 3rem;
+                            }
+                            .table3 {
+                            width: 80%;
+                            float: right;
+                            display: flex;
+                            justify-content: center;
+                            margin-top: 2rem;
+                            }
+                            .o_company_1_layout.footer.o_background_footer {
+                            margin-top: 7rem;
+                            }
+                        </style>
+                        <div class="company">
+                            <div class="logo">
                             </div>
-                            <div>HL:
-                                <span t-field="o.name"/>
+                            <div class="info"></div>
+                        </div>
+                        <div class="name_name">
+                            <h4 style="text-align:center">SALE ORDER</h4>
+                            <div class="date_hl">
+                                <div>Date:
+                                    <span t-field="o.create_date" t-options='{"widget": "date"}'/>
+                                </div>
+                                <div>HL:
+                                    <span t-field="o.name"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="cen_cen col-xs-6 col-md-10">
-                        <table class="my_table">
-                            <tr>
-                                <td>Name:
-                                    <span t-field="o.partner_id"/>
-                                </td>
-                                <td>
-                                    <p>Tax ID:
-                                        <span t-field="o.partner_id.vat"/>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Address:
-                                        <span t-field="o.partner_id.street"/>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Phone:
-                                        <span t-field="o.partner_id.phone"/>
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <br/>
-                    <div class="table2">
-                        <t t-if="o.order_line">
-                            <table border="1" style="width: 80%">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <span>Product</span>
-                                        </th>
-                                        <th>
-                                            <span>Description</span>
-                                        </th>
-                                        <th>
-                                            <span>Quantity</span>
-                                        </th>
-                                        <th>
-                                            <span>Delivered</span>
-                                        </th>
-                                        <th>
-                                            <span>Invoiced</span>
-                                        </th>
-                                        <th>
-                                            <span>Unit Price</span>
-                                        </th>
-                                        <th>
-                                            <span>Taxes</span>
-                                        </th>
-                                        <th>
-                                            <span>Subtotal</span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <t t-set="money_total" t-value="0"/>
-                                <t t-foreach="o.order_line" t-as="product">
-                                    <t t-set="money_total" t-value="money_total + product.price_subtotal"/>
-                                    <tr>
-                                        <td>
-                                            <span t-field="product.product_id"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.name"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.product_uom_qty"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.qty_delivered"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.qty_invoiced"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.price_unit"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.tax_id"/>
-                                        </td>
-                                        <td>
-                                            <span t-field="product.price_subtotal"/>
-                                        </td>
-                                    </tr>
-                                </t>
+                        <div class="cen_cen col-xs-6 col-md-10">
+                            <table class="my_table">
                                 <tr>
-                                    <td colspan="7">Total</td>
+                                    <td>Name :
+                                        <span t-field="o.partner_id"/>
+                                    </td>
                                     <td>
-                                        $ <t t-esc="money_total"/>
+                                        <p>Tax ID :
+                                            <span t-field="o.partner_id.vat"/>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Address :
+                                            <span t-field="o.partner_id.street"/>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Phone :
+                                            <span t-field="o.partner_id.phone"/>
+                                        </p>
                                     </td>
                                 </tr>
                             </table>
-                        </t>
-                    </div>
+                        </div>
+                        <br/>
+                        <div class="table2">
+                            <t t-if="o.order_line">
+                                <table border="1" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span>Product</span>
+                                            </th>
+                                            <th>
+                                                <span>Description</span>
+                                            </th>
+                                            <th>
+                                                <span>Quantity</span>
+                                            </th>
+                                            <th>
+                                                <span>Delivered</span>
+                                            </th>
+                                            <th>
+                                                <span>Invoiced</span>
+                                            </th>
+                                            <th>
+                                                <span>Unit Price</span>
+                                            </th>
+                                            <th>
+                                                <span>Taxes</span>
+                                            </th>
+                                            <th>
+                                                <span>Subtotal</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <t t-set="money_total" t-value="0"/>
+                                    <t t-set="taxes_total" t-value="0"/>
+                                    <t t-foreach="o.order_line" t-as="product">
+                                        <t t-set="money_total" t-value="money_total + product.price_subtotal"/>
+                                        <t t-set="taxes_total" t-value="taxes_total + product.taxes_product"/>
+                                        <tr>
+                                            <td>
+                                                <span t-field="product.product_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product.product_uom_qty"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product.qty_delivered"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product.qty_invoiced"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product.price_unit"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="product.taxes_product"/>
+                                                %
+                                            </td>
+                                            <td>
+                                                <span t-field="product.price_subtotal"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td colspan="6">Taxes All</td>
+                                        <td>
+                                            <t t-esc="taxes_total"/>
+                                            %
+                                        </td>
+                                        <td>
+                                            + <span t-field="o.amount_tax"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7">Total</td>
+                                        <td>
+                                            <span t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                        </div>
+                        <div class="table3">
+                            <table style="width: 100%; ">
+                                <tr>
+                                    <td>
+                                        <span>Customer</span>
+                                    </td>
+                                    <td>
+                                        <span>Customer</span>
+                                    </td>
+                                    <td>
+                                        <span>Customer</span>
+                                    </td>
+                                    <td>
+                                        <span>Customer</span>
+                                    </td>
+                                    <td>
+                                        <span>Customer</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
                 </div>
             </t>
         </t>
